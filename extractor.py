@@ -11,7 +11,7 @@ Qk = input("Kerosene flow rate in m3/hr: ")
 Qw = input("Water flow rate in m3/hr: ")
 dk = 800 # kg/m3 density of kerosene
 dw = 1000 # density of water
-nk = 0.00164
+nk = 0.00164 #viscosity
 nw = 0.001
 ift = 0.052
 Ce1 = input("concentration of EtSH at inlet ppm: ")
@@ -19,7 +19,7 @@ Cp1 = input("concentration of PrSH at inlet ppm: ")
 Cb1 = input("concentration of BuSH at inlet ppm: ")
 Cm_out = input("required concnetraiton of mercaptans at outlet ppm:")
 
-dp = 1.15*((ift/((dw-dk)*9.81))**0.5)
+dp = 1.15*((ift/((dw-dk)*9.81))**0.5)  
 c = input("weight fraction of base in water: ") # wt.fraction of base NaOH
 
 '''
@@ -29,12 +29,13 @@ Pet = 162
 Ppr = 30
 Pbu = 5
 
-ap = input("size of packings (input one if column is unpacked) : ")
-if ap == 1:
+packing = input("(input one if column is unpacked input 2 if packed ) : ")   
+if packing == 1:
     ap = 1
     trt = 1 # totrtuosity
     vdfr = 1
 else:
+    ap = input("packing size: ")
     trt = ap*dp*0.5
     vdfr = input("void factor of packings:")
 v = Qk/Qw
