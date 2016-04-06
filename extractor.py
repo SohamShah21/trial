@@ -96,7 +96,15 @@ Cp = Cp1
 Cb = Cb1
 h=0
 dh = 0.5
+A = []
+B=[]
+C=[]
+D=[]
 while Ce+Cp+Cb > Cm_out:
+    A.append(Ce)
+    B.append(Cp)
+    C.append(Cb)
+    D.append(h)
     if Ce < 0:
         Ce = 0
     if Cp < 0:
@@ -115,7 +123,11 @@ while Ce+Cp+Cb > Cm_out:
     c= c- (dne+dnp+dnb)/(1000000*Qw/40)
     h = h+dh
     
-
+from pylab import plot,show
+plot(D,A)
+plot(D,B)
+plot(D,C)
+show()
 print "Ce = ",Ce
 print "Cp = ",Cp
 print "Cb = ",Cb
