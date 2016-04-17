@@ -105,8 +105,15 @@ Ac = 0.25*(D**2)*math.pi
 print "Diameter of Column = ", D
 '''
 Calculation of mass transfer coefficients
+mass transfer cefficient is calculated using the formula:
+    Kod = A*A1*A2*A3  where
+    A is a constant depending on the mercaptan being trasnferred
+    A1 = [(0.95 + c)^4.119] c is mol fraction of base in water phase
+    A2 = [(particle size/void fraction)^0.091]
+    A3 = [(100*Vd)^0.837] Vd is superficial velocity of disperesed phase
 '''
-Aet = 4.23
+
+Aet = 4.23    
 Apr = 7.756
 Abu = 17.65
 A1 = (0.95+c)**4.119
@@ -130,6 +137,7 @@ A = []
 B=[]
 C=[]
 D=[]
+
 '''
 using euler's method for dynamic mass balance equations
  to calculate height of column required for 
@@ -184,16 +192,18 @@ while abs(c_err) > 0.0001:
         c= c+ (dne+dnp+dnb)/(1000000*Qw/40)
         h = h+dh
     c_err = c - c_bottom
-    c = c - 0.1*c_err
-    c_top = c_bottom - (ye+yp+yb)
+    c = c - 0.01*c_err
+    
 from pylab import plot,show
 plot(D,A,'green')
 plot(D,B,'blue')
 plot(D,C,'red')
 
-print "Ce = ",Ce
-print "Cp = ",Cp
-print "Cb = ",Cb
+c_top = c
+
+print "Concentration of ethanethiol at outlet = ",Ce
+print "Concnetration of propanethiol at outlet = ",Cp
+print "Concentration of butanethiol at outlet = ",Cb
 print "height of column = ",h
 print "concentration of base at top of column = ",c_top
 show()
